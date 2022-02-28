@@ -1,4 +1,4 @@
-package com.betelguese.cutepepper.domain.models
+package com.betelguese.cutepepper.domain.Mappers
 
 import com.betelguese.cutepepper.data.models.products
 
@@ -32,7 +32,7 @@ interface mapper<in T, out E> {
     //fun mapfrom(data: E): T // input E out T
 }
 
-object enitiymapper : mapper<products, Product> {
+public class EntityMapper() : mapper<products, Product> {
     override fun mapto(data: products): Product {
         return Product(
             id = data.pid,

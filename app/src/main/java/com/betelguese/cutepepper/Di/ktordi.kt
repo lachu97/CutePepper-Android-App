@@ -3,6 +3,7 @@ package com.betelguese.cutepepper.Di
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.features.json.*
@@ -11,7 +12,7 @@ import java.util.logging.Logger
 import javax.inject.Singleton
 
 @Module
-@InstallIn
+@InstallIn(SingletonComponent::class)
 object ktorclient {
     @Provides
     @Singleton
