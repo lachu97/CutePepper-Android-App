@@ -13,13 +13,13 @@ object urls{
     @Provides
     @Singleton
     @Named("productread")
-    fun provideproductsurl():String{
-        return "https://www.blacky.tech/productread.php"
+    fun provideproductsapiurl():String{
+        return "https://www.blacky.tech/bpapi/productread.php"
     }
     @Provides
     @Singleton
     @Named("categoryread")
-    fun providecategoryurl():String{
-        return "https://www.blacky.tech/catread.php"
+    fun providecategoryapiurl():String{
+        return "https://www.blacky.tech/bpapi/catread.php"
     }
 }

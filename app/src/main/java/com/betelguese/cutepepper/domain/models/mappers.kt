@@ -29,20 +29,20 @@ fun <T,E> mapperto(data: T):E{
 
 interface mapper<in T, out E> {
     fun mapto(data: T): E //input T out E
-   // fun mapfrom(data: E): T // input E out T
+    //fun mapfrom(data: E): T // input E out T
 }
 
-//object enitiymapper : mapper<products, Product> {
-//    override fun mapto(data: products): Product {
-//        return Product(
-//            id = data.pid,
-//            name = data.product_name,
-//            price = data.price,
-//            quantity = data.quantity,
-//            description = data.description,
-//            category_id = data.categoryid,
-//            category = data.category
-//
-//        )
-//    }
-//}
+object enitiymapper : mapper<products, Product> {
+    override fun mapto(data: products): Product {
+        return Product(
+            id = data.pid,
+            name = data.product_name,
+            price = data.price,
+            quantity = data.quantity,
+            description = data.description,
+            category_id = data.categoryid,
+            category = data.category
+
+        )
+    }
+}

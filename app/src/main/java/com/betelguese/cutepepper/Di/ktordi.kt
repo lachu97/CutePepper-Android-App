@@ -4,7 +4,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import io.ktor.client.*
+import io.ktor.client.engine.cio.*
 import io.ktor.client.features.json.*
+import io.ktor.client.features.logging.*
+import java.util.logging.Logger
 import javax.inject.Singleton
 
 @Module
@@ -13,11 +16,14 @@ object ktorclient {
     @Provides
     @Singleton
     fun providektorclient(): HttpClient {
-        val client = HttpClient{
+        return HttpClient(CIO){
             install(JsonFeature){
                 serializer=GsonSerializer()
+                install(Logging){
+                    level = LogLevel.BODY
+                }
             }
         }
-        return client
+
     }
 }
