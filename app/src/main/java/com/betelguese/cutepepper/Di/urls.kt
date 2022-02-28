@@ -1,4 +1,4 @@
-package com.betelguese.cutepepper.Hilt
+package com.betelguese.cutepepper.Di
 
 import dagger.Module
 import dagger.Provides

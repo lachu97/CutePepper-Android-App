@@ -1,4 +1,4 @@
-package com.betelguese.cutepepper.models
+package com.betelguese.cutepepper.data.models
 import com.google.gson.annotations.SerializedName
 data class products(
     val pid: Int,

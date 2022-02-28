@@ -1,10 +1,10 @@
-package com.betelguese.cutepepper.Database
+package com.betelguese.cutepepper.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.betelguese.cutepepper.models.cart
+import com.betelguese.cutepepper.data.models.cart
 import kotlinx.coroutines.flow.Flow
 
 @Dao

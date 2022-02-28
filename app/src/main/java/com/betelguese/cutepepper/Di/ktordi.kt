@@ -1,13 +1,10 @@
-package com.betelguese.cutepepper.Hilt
+package com.betelguese.cutepepper.Di
 
-import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import io.ktor.client.*
 import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import kotlinx.serialization.serializer
 import javax.inject.Singleton
 
 @Module

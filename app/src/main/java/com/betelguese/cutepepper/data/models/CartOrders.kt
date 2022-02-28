@@ -1,4 +1,4 @@
-package com.betelguese.cutepepper.models
+package com.betelguese.cutepepper.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

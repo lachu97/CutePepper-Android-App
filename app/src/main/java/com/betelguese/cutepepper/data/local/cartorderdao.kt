@@ -1,9 +1,9 @@
-package com.betelguese.cutepepper.Database
+package com.betelguese.cutepepper.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.betelguese.cutepepper.models.CartOrders
+import com.betelguese.cutepepper.data.models.CartOrders
 import kotlinx.coroutines.flow.Flow
 
 @Dao
