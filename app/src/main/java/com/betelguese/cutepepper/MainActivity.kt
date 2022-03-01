@@ -11,21 +11,26 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.betelguese.cutepepper.presentation.viewmodels.randomviewmodel
 import com.betelguese.cutepepper.ui.theme.CutePepperTheme
+import com.betelguese.cutepepper.utils.ConnectionLiveData
 import com.betelguese.cutepepper.utils.sharedviewmodel
 import dagger.hilt.android.AndroidEntryPoint
-import hilt_aggregated_deps._androidx_hilt_lifecycle_ViewModelFactoryModules_ActivityModuleModuleDeps
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        val hasinternet : ConnectionLiveData = ConnectionLiveData(this)
+        hasinternet.observe(this,){
+            Log.i("MainActivity","Internet Connection =${it}")
+        }
         setContent {
             CutePepperTheme {
-                val viewmodel:sharedviewmodel = hiltViewModel()
-                val state = viewmodel.newstate.value
+                val random : randomviewmodel = hiltViewModel()
+//                val viewmodel:sharedviewmodel= hiltViewModel()
+                val state = random.newstate.value
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     Greeting("Android")
@@ -33,7 +38,7 @@ class MainActivity : ComponentActivity() {
                         if (it.loading){
                             Log.i("MainActivity","Loading ${state.loading}")
                         }
-                        it.resultlist.forEach {
+                        it.resultlist?.forEach {
                             Log.i("MainActivity","Value = ${it}")
                         }
                         it.error.let {

@@ -8,6 +8,7 @@ import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.logging.*
+import io.ktor.http.*
 import javax.inject.Singleton
 
 @Module
@@ -18,7 +19,9 @@ object ktorclient {
     fun providektorclient(): HttpClient {
         return HttpClient(CIO) {
             install(JsonFeature) {
-                serializer = GsonSerializer()
+                serializer = GsonSerializer {
+                    acceptContentTypes = acceptContentTypes + ContentType.Any
+                }
                 install(Logging) {
                     level = LogLevel.BODY
                 }

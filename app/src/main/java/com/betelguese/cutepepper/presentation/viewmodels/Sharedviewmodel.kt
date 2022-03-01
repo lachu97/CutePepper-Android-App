@@ -1,14 +1,14 @@
 package com.betelguese.cutepepper.utils
 
 import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.betelguese.cutepepper.data.models.products
-import com.betelguese.cutepepper.domain.Mappers.Product
 import com.betelguese.cutepepper.domain.use_case.product.ProductUseCase
+import com.betelguese.cutepepper.presentation.Uistate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -38,27 +38,24 @@ class sharedviewmodel @Inject constructor(
 //    }
 
     init {
+
         getproductsfromurl()
     }
 
     private val _productstate = mutableStateOf<Uistate>(Uistate())
     val newstate: State<Uistate> = _productstate
 
-    data class Uistate(
-        val loading: Boolean = false,
-        val resultlist: List<Product> = emptyList<Product>(),
-        val error: String = ""
-    )
+
 
     fun getproductsfromurl() {
         productUseCase().onEach { result ->
             when (result) {
                 is Resource.Loading -> {
-                    _productstate.value = Uistate(loading = true)
+                    _productstate.value = Uistate(loading = true,)
                 }
                 is Resource.Success -> {
                     _productstate.value = Uistate(
-                        resultlist = result.data ?: emptyList()
+                        resultlist = result.data!!
                     )
                 }
                 is Resource.Error -> {

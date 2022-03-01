@@ -17,9 +17,10 @@ class ProductUseCase @Inject constructor(
 ) {
     operator fun invoke(): Flow<Resource<List<Product>>> {
         return flow {
-            emit(Resource.Loading<List<Product>>())
-            delay(500L)
+
             try {
+                emit(Resource.Loading<List<Product>>())
+                delay(500L)
                 val productslist = productrepo.getProductsList().map {
                     //it.toProduct()
                     mapper.mapto(it)
