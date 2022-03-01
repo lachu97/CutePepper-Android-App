@@ -47,8 +47,8 @@ class sharedviewmodel @Inject constructor(
 
     data class Uistate(
         val loading: Boolean = false,
-        val resultlist: List<Product> = emptyList(),
-        val error: String = "null"
+        val resultlist: List<Product> = listOf(),
+        val error: String = ""
     )
 
     fun getproductsfromurl() {

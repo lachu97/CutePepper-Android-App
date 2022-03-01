@@ -13,12 +13,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.betelguese.cutepepper.ui.theme.CutePepperTheme
 import com.betelguese.cutepepper.utils.sharedviewmodel
 import dagger.hilt.android.AndroidEntryPoint
+import hilt_aggregated_deps._androidx_hilt_lifecycle_ViewModelFactoryModules_ActivityModuleModuleDeps
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewmodel by viewModels<sharedviewmodel>()
+       val viewmodel by viewModels<sharedviewmodel>()
 
         setContent {
             CutePepperTheme {
