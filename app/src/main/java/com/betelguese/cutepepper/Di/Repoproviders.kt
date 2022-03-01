@@ -11,10 +11,13 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object repoproviders{
+object repoproviders {
     @Provides
     @Singleton
-    fun provideProductRepo(client: HttpClient,@Named("productread") getproducturl:String):Productrepo{
+    fun provideProductRepo(
+        client: HttpClient,
+        @Named("productread") getproducturl: String
+    ): Productrepo {
         return Productrepo(
             client = client,
             getproducturl = getproducturl

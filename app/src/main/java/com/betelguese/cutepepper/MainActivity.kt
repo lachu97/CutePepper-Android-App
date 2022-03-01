@@ -10,6 +10,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.betelguese.cutepepper.ui.theme.CutePepperTheme
 import com.betelguese.cutepepper.utils.sharedviewmodel
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,25 +18,29 @@ import hilt_aggregated_deps._androidx_hilt_lifecycle_ViewModelFactoryModules_Act
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       val viewmodel by viewModels<sharedviewmodel>()
 
         setContent {
             CutePepperTheme {
+                val viewmodel:sharedviewmodel = hiltViewModel()
                 val state = viewmodel.newstate.value
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     Greeting("Android")
-                    if (state.loading){
-                        Log.i("MainActivity","Loading ${state.loading}")
+                    state.let {
+                        if (it.loading){
+                            Log.i("MainActivity","Loading ${state.loading}")
+                        }
+                        it.resultlist.forEach {
+                            Log.i("MainActivity","Value = ${it}")
+                        }
+                        it.error.let {
+                            Log.i("mainActivity","Error =${it}")
+                        }
                     }
-                    state.resultlist.forEach {
-                        Log.i("MainActivity","Value = ${it}")
-                    }
-                    state.error.let {
-                        Log.i("mainActivity","Error =${it}")
-                    }
+
                 }
             }
         }

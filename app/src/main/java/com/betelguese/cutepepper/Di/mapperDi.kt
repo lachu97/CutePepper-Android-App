@@ -9,10 +9,10 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object mappers{
+object mappers {
     @Provides
     @Singleton
-    fun provideproductmapper():EntityMapper{
+    fun provideproductmapper(): EntityMapper {
         return EntityMapper()
     }
 }
