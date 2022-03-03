@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
                         if (it.loading){
                             Log.i("MainActivity","Loading ${state.loading}")
                         }
-                        it.resultlist?.forEach {
+                        it.resultlist.forEach {
                             Log.i("MainActivity","Value = ${it}")
                         }
                         it.error.let {

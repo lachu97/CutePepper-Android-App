@@ -15,17 +15,18 @@ import javax.inject.Inject
 @HiltViewModel
 class randomviewmodel @Inject constructor(
     val useCase: ProductUseCase
-) : ViewModel(){
+) : ViewModel() {
     private val _uistate = mutableStateOf<Uistate>(Uistate())
     val newstate: State<Uistate> = _uistate
+
     init {
-        getproductsfromurl()
+        getProductsFromURL()
     }
-    fun getproductsfromurl() {
+    fun getProductsFromURL() {
         useCase().onEach { resultOf ->
             when (resultOf) {
                 is Resource.Loading -> {
-                    _uistate.value = Uistate(loading = true,)
+                    _uistate.value = Uistate(loading = true)
                 }
                 is Resource.Success -> {
                     _uistate.value = Uistate(

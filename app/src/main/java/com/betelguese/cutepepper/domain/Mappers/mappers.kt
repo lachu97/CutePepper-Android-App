@@ -32,7 +32,7 @@ interface mapper<in T, out E> {
     //fun mapfrom(data: E): T // input E out T
 }
 
-public class EntityMapper() : mapper<products, Product> {
+class EntityMapper() : mapper<products, Product> {
     override fun mapto(data: products): Product {
         return Product(
             id = data.pid,
