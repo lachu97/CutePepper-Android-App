@@ -2,15 +2,14 @@ package com.betelguese.cutepepper.domain.use_case.category
 
 import com.betelguese.cutepepper.data.repository.Categoryrepo
 import com.betelguese.cutepepper.domain.Mappers.CategoryEntityMapper
-import com.betelguese.cutepepper.domain.Mappers.Product
 import com.betelguese.cutepepper.domain.Mappers.category
 import com.betelguese.cutepepper.utils.Resource
 import io.ktor.client.call.*
+import io.ktor.util.network.*
 import io.ktor.utils.io.errors.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import java.nio.channels.UnresolvedAddressException
 import javax.inject.Inject
 
 class CategoryUsecase @Inject constructor(

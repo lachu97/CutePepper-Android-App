@@ -24,12 +24,11 @@ class randomviewmodel @Inject constructor(
 
     private val _categorystate = mutableStateOf<CategoryUistate>(CategoryUistate())
     val categorynewstate: State<CategoryUistate> = _categorystate
+
     init {
         getProductsFromURL()
         getcategoryfromURL()
-
     }
-
 
 
     fun getcategoryfromURL() {
@@ -53,6 +52,7 @@ class randomviewmodel @Inject constructor(
             }
         }.launchIn(viewModelScope)
     }
+
     fun getProductsFromURL() {
         useCase().onEach { resultOf ->
             when (resultOf) {

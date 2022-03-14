@@ -5,11 +5,11 @@ import com.betelguese.cutepepper.domain.Mappers.Product
 import com.betelguese.cutepepper.domain.Mappers.ProductEntityMapper
 import com.betelguese.cutepepper.utils.Resource
 import io.ktor.client.call.*
+import io.ktor.util.network.UnresolvedAddressException
 import io.ktor.utils.io.errors.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import java.nio.channels.UnresolvedAddressException
 import javax.inject.Inject
 
 class ProductUseCase @Inject constructor(
@@ -33,8 +33,6 @@ class ProductUseCase @Inject constructor(
 
             } catch (e: NoTransformationFoundException) {
                 emit(Resource.Error<List<Product>>("Some Error Occured" + e.localizedMessage))
-            } catch (e: UnresolvedAddressException) {
-                emit(Resource.Error<List<Product>>("Some Error Occured" + e.localizedMessage + e.message))
             }
         }
     }
