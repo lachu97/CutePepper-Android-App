@@ -31,7 +31,7 @@ class ProductUseCaseTest {
     }
 
     @Test
-    fun `get single product and check for nullability `() {
+    fun `get single product and check for nullability`() {
         val singleproduct: Product = FakeMapper.mapto(product)
         assertNotNull(singleproduct)
     }

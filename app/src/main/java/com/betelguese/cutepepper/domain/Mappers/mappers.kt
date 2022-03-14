@@ -1,5 +1,6 @@
 package com.betelguese.cutepepper.domain.Mappers
 
+import com.betelguese.cutepepper.data.models.Category
 import com.betelguese.cutepepper.data.models.products
 
 data class Product(
@@ -11,7 +12,10 @@ data class Product(
     val description: String,
     val quantity: String
 )
-
+data class category(
+    val id:Int,
+    val name: String
+)
 fun products.toProduct(): Product {
     return Product(
         id = pid,
@@ -32,7 +36,7 @@ interface mapper<in T, out E> {
     //fun mapfrom(data: E): T // input E out T
 }
 
-class EntityMapper() : mapper<products, Product> {
+class ProductEntityMapper() : mapper<products, Product> {
     override fun mapto(data: products): Product {
         return Product(
             id = data.pid,
@@ -45,4 +49,13 @@ class EntityMapper() : mapper<products, Product> {
 
         )
     }
+}
+class CategoryEntityMapper : mapper<Category,category>{
+    override fun mapto(data: Category): category {
+        return category(
+            id = data.id,
+            name = data.name
+        )
+    }
+
 }

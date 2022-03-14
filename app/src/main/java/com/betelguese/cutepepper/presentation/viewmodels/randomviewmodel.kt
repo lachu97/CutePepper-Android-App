@@ -4,7 +4,9 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.betelguese.cutepepper.domain.use_case.category.CategoryUsecase
 import com.betelguese.cutepepper.domain.use_case.product.ProductUseCase
+import com.betelguese.cutepepper.presentation.CategoryUistate
 import com.betelguese.cutepepper.presentation.Uistate
 import com.betelguese.cutepepper.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,13 +16,42 @@ import javax.inject.Inject
 
 @HiltViewModel
 class randomviewmodel @Inject constructor(
-    val useCase: ProductUseCase
+    val useCase: ProductUseCase,
+    val categoryUsecase: CategoryUsecase
 ) : ViewModel() {
     private val _uistate = mutableStateOf<Uistate>(Uistate())
     val newstate: State<Uistate> = _uistate
 
+    private val _categorystate = mutableStateOf<CategoryUistate>(CategoryUistate())
+    val categorynewstate: State<CategoryUistate> = _categorystate
     init {
         getProductsFromURL()
+        getcategoryfromURL()
+
+    }
+
+
+
+    fun getcategoryfromURL() {
+        categoryUsecase().onEach { result ->
+            when (result) {
+                is Resource.Loading -> {
+                    _categorystate.value = CategoryUistate(
+                        loading = true
+                    )
+                }
+                is Resource.Success -> {
+                    _categorystate.value = CategoryUistate(
+                        resultlist = result.data!!
+                    )
+                }
+                is Resource.Error -> {
+                    _categorystate.value = CategoryUistate(
+                        error = result.message ?: "{}"
+                    )
+                }
+            }
+        }.launchIn(viewModelScope)
     }
     fun getProductsFromURL() {
         useCase().onEach { resultOf ->

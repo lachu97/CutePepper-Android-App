@@ -1,13 +1,15 @@
 package com.betelguese.cutepepper.utils
 
 import androidx.compose.runtime.State
-import androidx.compose.runtime.*
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.betelguese.cutepepper.data.models.products
+import com.betelguese.cutepepper.domain.use_case.category.CategoryUsecase
 import com.betelguese.cutepepper.domain.use_case.product.ProductUseCase
+import com.betelguese.cutepepper.presentation.CategoryUistate
 import com.betelguese.cutepepper.presentation.Uistate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -19,7 +21,8 @@ class sharedviewmodel @Inject constructor(
 //    val cartdao: cartdao,
 //    val dtst: MyDatastore,
 //    val codao: cartorderdao,
-    val productUseCase: ProductUseCase
+    val productUseCase: ProductUseCase,
+    val categoryUsecase: CategoryUsecase
 ) : ViewModel() {
     //List of Cart Items
 //    val cartitems = cartdao.getcart().asLiveData()
@@ -40,18 +43,43 @@ class sharedviewmodel @Inject constructor(
     init {
 
         getproductsfromurl()
+        getcategoryfromurl()
     }
 
     private val _productstate = mutableStateOf<Uistate>(Uistate())
     val newstate: State<Uistate> = _productstate
 
+    private val _categorystate = mutableStateOf<CategoryUistate>(CategoryUistate())
+    val categorynewstate: State<CategoryUistate> = _categorystate
 
+
+    fun getcategoryfromurl() {
+        categoryUsecase().onEach { result ->
+            when (result) {
+                is Resource.Loading -> {
+                    _categorystate.value = CategoryUistate(
+                        loading = true
+                    )
+                }
+                is Resource.Success -> {
+                    _categorystate.value = CategoryUistate(
+                        resultlist = result.data!!
+                    )
+                }
+                is Resource.Error -> {
+                    _categorystate.value = CategoryUistate(
+                        error = result.message ?: "{}"
+                    )
+                }
+            }
+        }.launchIn(viewModelScope)
+    }
 
     fun getproductsfromurl() {
         productUseCase().onEach { result ->
             when (result) {
                 is Resource.Loading -> {
-                    _productstate.value = Uistate(loading = true,)
+                    _productstate.value = Uistate(loading = true)
                 }
                 is Resource.Success -> {
                     _productstate.value = Uistate(

@@ -1,6 +1,7 @@
 package com.betelguese.cutepepper.Di
 
-import com.betelguese.cutepepper.domain.Mappers.EntityMapper
+import com.betelguese.cutepepper.domain.Mappers.CategoryEntityMapper
+import com.betelguese.cutepepper.domain.Mappers.ProductEntityMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,7 +13,12 @@ import javax.inject.Singleton
 object mappers {
     @Provides
     @Singleton
-    fun provideproductmapper(): EntityMapper {
-        return EntityMapper()
+    fun provideproductmapper(): ProductEntityMapper {
+        return ProductEntityMapper()
+    }
+    @Provides
+    @Singleton
+    fun providecategorymapper():CategoryEntityMapper{
+        return CategoryEntityMapper()
     }
 }

@@ -1,5 +1,6 @@
 package com.betelguese.cutepepper.Di
 
+import com.betelguese.cutepepper.data.repository.Categoryrepo
 import com.betelguese.cutepepper.data.repository.Productrepo
 import dagger.Module
 import dagger.Provides
@@ -21,6 +22,18 @@ object repoproviders {
         return Productrepo(
             client = client,
             getproducturl = getproducturl
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideCategoryrepo(
+        client: HttpClient,
+        @Named("categoryread") getcategoryurl: String
+    ): Categoryrepo {
+        return Categoryrepo(
+            client = client,
+            getcategoryurl = getcategoryurl
         )
     }
 }

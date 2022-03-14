@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -14,7 +13,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.betelguese.cutepepper.presentation.viewmodels.randomviewmodel
 import com.betelguese.cutepepper.ui.theme.CutePepperTheme
 import com.betelguese.cutepepper.utils.ConnectionLiveData
-import com.betelguese.cutepepper.utils.sharedviewmodel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,12 +29,25 @@ class MainActivity : ComponentActivity() {
                 val random : randomviewmodel = hiltViewModel()
 //                val viewmodel:sharedviewmodel= hiltViewModel()
                 val state = random.newstate.value
+                val catstate = random.categorynewstate.value
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     Greeting("Android")
                     state.let {
                         if (it.loading){
-                            Log.i("MainActivity","Loading ${state.loading}")
+                            Log.i("MainActivity","Loading ${it.loading}")
+                        }
+                        it.resultlist.forEach {
+                            Log.i("MainActivity","Value = ${it}")
+                        }
+                        it.error.let {
+                            Log.i("mainActivity","Error =${it}")
+                        }
+                    }
+                    catstate.let {
+                        if (it.loading){
+                            Log.i("MainActivity","Loading category ${it.loading}")
+
                         }
                         it.resultlist.forEach {
                             Log.i("MainActivity","Value = ${it}")
