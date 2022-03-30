@@ -5,6 +5,11 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import com.betelguese.cutepepper.presentation.views.ui_elements.CustomTheme
+import com.betelguese.cutepepper.presentation.views.ui_elements.Localcolor
+import com.betelguese.cutepepper.presentation.views.ui_elements.Localpadding
+import com.betelguese.cutepepper.presentation.views.ui_elements.Localsize
 
 private val DarkColorPalette = darkColors(
     primary = Purple200,
@@ -34,11 +39,18 @@ fun CutePepperTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Compos
     } else {
         LightColorPalette
     }
+    CompositionLocalProvider(
+        Localpadding provides CustomTheme.Mypadding(),
+        Localcolor provides CustomTheme.Mycolors(),
+        Localsize provides CustomTheme.Mysize(),
+    ) {
 
-    MaterialTheme(
-        colors = colors,
-        typography = Typography,
-        shapes = Shapes,
-        content = content
-    )
+        MaterialTheme(
+            colors = colors,
+            typography = Typography,
+            shapes = Shapes,
+            content = content
+        )
+    }
+
 }

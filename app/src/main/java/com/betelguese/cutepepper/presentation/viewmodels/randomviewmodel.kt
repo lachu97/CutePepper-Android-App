@@ -27,11 +27,11 @@ class randomviewmodel @Inject constructor(
 
     init {
         getProductsFromURL()
-        getcategoryfromURL()
+        getCategoryfromURL()
     }
 
 
-    fun getcategoryfromURL() {
+    fun getCategoryfromURL() {
         categoryUsecase().onEach { result ->
             when (result) {
                 is Resource.Loading -> {
@@ -57,7 +57,9 @@ class randomviewmodel @Inject constructor(
         useCase().onEach { resultOf ->
             when (resultOf) {
                 is Resource.Loading -> {
-                    _uistate.value = Uistate(loading = true)
+                    _uistate.value = Uistate(
+                        loading = true
+                    )
                 }
                 is Resource.Success -> {
                     _uistate.value = Uistate(

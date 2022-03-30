@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
 //                val viewmodel:sharedviewmodel= hiltViewModel()
                 val state = random.newstate.value
                 val catstate = random.categorynewstate.value
-                // A surface container using the 'background' color from the theme
+                // A surface container using the 'background' Mycolors from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     Greeting("Android")
                     state.let {
