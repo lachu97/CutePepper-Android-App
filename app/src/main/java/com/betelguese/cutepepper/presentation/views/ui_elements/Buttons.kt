@@ -1,9 +1,9 @@
 package com.betelguese.cutepepper.presentation.views.ui_elements
 
 
-import android.graphics.drawable.Icon
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,6 +14,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -26,14 +27,17 @@ fun DefaultButton(
     title: String,
     onclick: () -> Unit,
     modifier: Modifier = Modifier.padding(MaterialTheme.custompadding.xtralarge),
-    bgcolor: Color = MaterialTheme.customcolor.Teal500,
+    bgcolor: Color = MaterialTheme.customcolor.Background700,
+    elevation: Dp = MaterialTheme.customelevation.default,
+    cornerradius : Dp = MaterialTheme.custom_corneradius.default
 ) {
     Button(
         onClick = onclick,
         modifier = modifier,
         colors = ButtonDefaults.buttonColors(backgroundColor = bgcolor),
         border = BorderStroke(1.dp, color = MaterialTheme.customcolor.Border700),
-        elevation = ButtonDefaults.elevation(defaultElevation = MaterialTheme.customelevation.high)
+        elevation = ButtonDefaults.elevation(defaultElevation = elevation),
+        shape = RoundedCornerShape(cornerradius)
     ) {
        NewText(title = title)
     }

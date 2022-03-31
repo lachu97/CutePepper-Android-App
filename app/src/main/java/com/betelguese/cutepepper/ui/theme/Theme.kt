@@ -41,6 +41,7 @@ fun CutePepperTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Compos
         Localcolor provides CustomTheme.Mycolors(),
         Localsize provides CustomTheme.Mysize(),
         Localelevation provides CustomTheme.Elevation(),
+        Localcorneradius provides CustomTheme.CornerRadius(),
     ) {
 
         MaterialTheme(

@@ -12,6 +12,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -73,7 +74,7 @@ data class Pro(
     val name: String,
     val price: Int,
     val descrip: String,
-    val image : String = "http://blacky.tech/categoryimg/snacks.png"
+    val image: String = "http://blacky.tech/categoryimg/snacks.png"
 )
 
 @Composable
@@ -87,25 +88,55 @@ fun ProductCard(
             .padding(MaterialTheme.custompadding.large)
             .clickable(onClick = onclick),
         elevation = MaterialTheme.customelevation.normal,
-        shape = RoundedCornerShape(MaterialTheme.customsize.xtrasmall),
-        backgroundColor = MaterialTheme.customcolor.Background700,
+        shape = RoundedCornerShape(MaterialTheme.custom_corneradius.medium),
+        backgroundColor = MaterialTheme.customcolor.Background500,
         border = BorderStroke(1.dp, color = Color.Black.copy(alpha = 0.6f))
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(MaterialTheme.custompadding.medium)
+            modifier = Modifier.padding(MaterialTheme.custompadding.medium),
+            horizontalArrangement = Arrangement.Center
         ) {
             pitems.image.let {
                 CoilImage(
                     imageModel = it,
                     contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .size(MaterialTheme.customsize.xxl)
+                        .padding(
+                            MaterialTheme.custompadding.default
+                        )
+                        .clip(RoundedCornerShape(MaterialTheme.custom_corneradius.medium)),
                     shimmerParams = ShimmerParams(
                         baseColor = MaterialTheme.customcolor.ShimmerBg,
                         highlightColor = Color.LightGray.copy(alpha = 0.6f),
                         durationMillis = 250,
                         dropOff = 0.65f,
-                        tilt = 24f
+                        tilt = 24f,
                     ),
+                )
+            }
+            Spacer(modifier = Modifier.padding(MaterialTheme.custompadding.large))
+
+            Column(horizontalAlignment = Alignment.Start) {
+                pitems.name.let {
+                    NewText(title = it)
+                }
+                Spacer(modifier = Modifier.padding(MaterialTheme.custompadding.small))
+                Row {
+                    NewText(title = "Price")
+                    Spacer(modifier = Modifier.padding(MaterialTheme.custompadding.default))
+                    pitems.price.let {
+                        NewText(title = it.toString())
+                    }
+                }
+                Spacer(modifier = Modifier.padding(MaterialTheme.custompadding.small))
+                DefaultButton(
+                    title = "Add to Cart",
+                    onclick = { /*TODO*/ },
+                    modifier = Modifier.padding(5.dp),
+                    elevation = 1.dp,
+                    cornerradius = 4.dp
                 )
             }
         }
@@ -118,9 +149,16 @@ fun PreviewScreen() {
     CutePepperTheme {
         Column(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxSize(), verticalArrangement = Arrangement.SpaceBetween,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
+            ProductCard(
+                onclick = { /*TODO*/ }, pitems = Pro(
+                    name = "Pnames",
+                    price = 89,
+                    descrip = "LoemIpsum..."
+                )
+            )
         }
     }
 }

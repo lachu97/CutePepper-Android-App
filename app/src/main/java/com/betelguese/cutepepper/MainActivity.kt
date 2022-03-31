@@ -17,6 +17,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.betelguese.cutepepper.presentation.viewmodels.randomviewmodel
 import com.betelguese.cutepepper.presentation.views.ui_elements.CategoryList
+import com.betelguese.cutepepper.presentation.views.ui_elements.Pro
+import com.betelguese.cutepepper.presentation.views.ui_elements.ProductCard
 import com.betelguese.cutepepper.ui.theme.CutePepperTheme
 import com.betelguese.cutepepper.utils.ConnectionLiveData
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,6 +54,12 @@ class MainActivity : ComponentActivity() {
                     ) {
                         Greeting("Android")
                         CategoryList(listItems = myitems)
+                        ProductCard(onclick = { /*TODO*/ }, pitems = Pro(
+                            name = "Pnames",
+                            price = 89,
+                            descrip = "LoemIpsum..."
+                        )
+                        )
                     }
 
 

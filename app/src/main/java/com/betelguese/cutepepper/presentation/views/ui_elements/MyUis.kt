@@ -16,7 +16,12 @@ sealed class CustomTheme {
         val large: Dp = 10.dp,
         val xtralarge: Dp = 12.dp
     )
-
+    data class CornerRadius(
+        val default: Dp = 10.dp,
+        val small: Dp = 12.dp,
+        val medium: Dp = 16.dp,
+        val large: Dp = 24.dp
+    )
     data class Mysize(
         val xtrasmall: Dp = 10.dp,
         val verysmall: Dp = 12.dp,
@@ -25,11 +30,13 @@ sealed class CustomTheme {
         val large: Dp = 54.dp,
         val xl: Dp = 96.dp,
         val xxl: Dp = 120.dp,
+        val xxxl: Dp = 200.dp,
         val length: Dp = 56.dp,
         val width: Dp = 48.dp,
     )
 
     data class Elevation(
+        val nil:Dp = 1.dp,
         val default: Dp = 4.dp,
         val normal: Dp = 8.dp,
         val high: Dp = 10.dp,
@@ -67,6 +74,7 @@ val Localpadding = compositionLocalOf { CustomTheme.Mypadding() }
 val Localcolor = compositionLocalOf { CustomTheme.Mycolors() }
 val Localsize = compositionLocalOf { CustomTheme.Mysize() }
 val Localelevation = compositionLocalOf { CustomTheme.Elevation() }
+val Localcorneradius = compositionLocalOf { CustomTheme.CornerRadius() }
 val MaterialTheme.custompadding: CustomTheme.Mypadding
     @Composable
     @ReadOnlyComposable
@@ -83,3 +91,7 @@ val MaterialTheme.customelevation: CustomTheme.Elevation
     @Composable
     @ReadOnlyComposable
     get() = Localelevation.current
+val MaterialTheme.custom_corneradius: CustomTheme.CornerRadius
+    @Composable
+    @ReadOnlyComposable
+    get() = Localcorneradius.current
