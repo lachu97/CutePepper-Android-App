@@ -25,6 +25,17 @@ sealed class CustomTheme {
         val length :Dp = 56.dp,
         val width :Dp = 48.dp,
     )
+    data class Elevation(
+        val default: Dp = 4.dp,
+        val normal: Dp = 8.dp,
+        val high: Dp = 10.dp,
+        val very_high: Dp = 12.dp,
+    )
+    data class Buttoncolors(
+        val buttonbg700 :Color = Color(0xFFC4C4C4),
+        val buttonbgTeal300 :Color = Color(0xFF53E0D3),
+        val buttonbgTeal500 :Color = Color(0xFF1AF1DD)
+    )
     data class Mycolors(
         val background: Color = Color.Cyan.copy(
             alpha = 0.7f
@@ -48,6 +59,7 @@ sealed class CustomTheme {
 val Localpadding = compositionLocalOf { CustomTheme.Mypadding() }
 val Localcolor = compositionLocalOf { CustomTheme.Mycolors() }
 val Localsize = compositionLocalOf { CustomTheme.Mysize() }
+val Localelevation = compositionLocalOf { CustomTheme.Elevation() }
 val MaterialTheme.custompadding: CustomTheme.Mypadding
     @Composable
     @ReadOnlyComposable
@@ -60,3 +72,7 @@ val MaterialTheme.customsize: CustomTheme.Mysize
     @Composable
     @ReadOnlyComposable
     get() = Localsize.current
+val MaterialTheme.customelevation: CustomTheme.Elevation
+    @Composable
+    @ReadOnlyComposable
+    get() = Localelevation.current
