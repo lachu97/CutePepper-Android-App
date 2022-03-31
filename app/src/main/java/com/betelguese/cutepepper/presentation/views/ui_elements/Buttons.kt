@@ -27,10 +27,6 @@ fun DefaultButton(
     onclick: () -> Unit,
     modifier: Modifier = Modifier.padding(MaterialTheme.custompadding.xtralarge),
     bgcolor: Color = MaterialTheme.customcolor.Teal500,
-    textcolor: Color = MaterialTheme.customcolor.Text700,
-    fontWeight: FontWeight = FontWeight.Bold,
-    fontSize: TextUnit = 17.sp,
-    fontFamily: FontFamily = FontFamily.SansSerif
 ) {
     Button(
         onClick = onclick,
@@ -39,19 +35,11 @@ fun DefaultButton(
         border = BorderStroke(1.dp, color = MaterialTheme.customcolor.Border700),
         elevation = ButtonDefaults.elevation(defaultElevation = MaterialTheme.customelevation.high)
     ) {
-        Text(
-            text = title,
-            modifier = Modifier
-                .padding(MaterialTheme.custompadding.medium),
-            color = textcolor,
-            fontWeight = fontWeight,
-            fontSize = fontSize,
-            fontStyle = FontStyle.Normal,
-            fontFamily = fontFamily
-        )
+       NewText(title = title)
     }
 
 }
+
 
 @Composable
 fun DefaultIconButton(
@@ -60,34 +48,54 @@ fun DefaultIconButton(
     icon: Int,
     modifier: Modifier = Modifier.padding(MaterialTheme.custompadding.xtralarge),
     bgcolor: Color = MaterialTheme.customcolor.Background700,
-    textcolor: Color = MaterialTheme.customcolor.Teal700,
-    fontWeight: FontWeight = FontWeight.Bold,
-    fontSize: TextUnit = 17.sp,
-    fontFamily: FontFamily = FontFamily.SansSerif
 ) {
-    Button(onClick = onclick) {
+    Button(onClick = onclick,
+        colors = ButtonDefaults.buttonColors(backgroundColor = bgcolor),
+        modifier = modifier,
+        border = BorderStroke(1.dp, color = MaterialTheme.customcolor.Border700),
+        elevation = ButtonDefaults.elevation(defaultElevation = MaterialTheme.customelevation.high)
+        ) {
         Icon(
             painter = painterResource(id = icon),
             contentDescription = null,
 
             )
         Spacer(modifier = Modifier.padding(MaterialTheme.custompadding.medium))
-        Text(
-            text = title,
-            modifier = Modifier
-                .padding(MaterialTheme.custompadding.medium),
-            color = textcolor,
-            fontWeight = fontWeight,
-            fontSize = fontSize,
-            fontStyle = FontStyle.Normal,
-            fontFamily = fontFamily
-        )
+        NewText(title = title)
     }
+}
+
+@Composable
+fun NewText(
+    title: String,
+    modifier: Modifier = Modifier.padding(MaterialTheme.custompadding.medium),
+    textcolor: Color = MaterialTheme.customcolor.Text700,
+    fontWeight: FontWeight = FontWeight.Bold,
+    fontSize: TextUnit = 17.sp,
+    fontFamily: FontFamily = FontFamily.SansSerif
+
+) {
+    Text(
+        text = title,
+        modifier = modifier,
+        color = textcolor,
+        fontWeight = fontWeight,
+        fontSize = fontSize,
+        fontStyle = FontStyle.Normal,
+        fontFamily = fontFamily
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
+    val myitems = listOf<String>(
+        "Item 1",
+        "Item 2",
+        "Item 3",
+        "Item 4",
+        "Item 5",
+    )
     CutePepperTheme {
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -98,6 +106,7 @@ fun DefaultPreview() {
             DefaultButton(title = "Mytitle", onclick = { })
             DefaultIconButton(title = "Extra Title", onclick = { /*TODO*/ },
                 icon = R.drawable.ic_dehaze)
+            CategoryList(listItems = myitems)
         }
     }
 }

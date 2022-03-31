@@ -4,13 +4,19 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.betelguese.cutepepper.presentation.viewmodels.randomviewmodel
+import com.betelguese.cutepepper.presentation.views.ui_elements.CategoryList
 import com.betelguese.cutepepper.ui.theme.CutePepperTheme
 import com.betelguese.cutepepper.utils.ConnectionLiveData
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,40 +26,56 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val hasinternet : ConnectionLiveData = ConnectionLiveData(this)
-        hasinternet.observe(this,){
-            Log.i("MainActivity","Internet Connection =${it}")
+        val hasinternet: ConnectionLiveData = ConnectionLiveData(this)
+        hasinternet.observe(this) {
+            Log.i("MainActivity", "Internet Connection =${it}")
         }
+        val myitems = listOf<String>(
+            "Item 1",
+            "Item 2",
+            "Item 3",
+            "Item 4",
+            "Item 5",
+        )
         setContent {
             CutePepperTheme {
-                val random : randomviewmodel = hiltViewModel()
+                val random: randomviewmodel = hiltViewModel()
 //                val viewmodel:sharedviewmodel= hiltViewModel()
                 val state = random.newstate.value
                 val catstate = random.categorynewstate.value
                 // A surface container using the 'background' Mycolors from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Greeting("Android")
+                        CategoryList(listItems = myitems)
+                    }
+
+
                     state.let {
-                        if (it.loading){
-                            Log.i("MainActivity","Loading ${it.loading}")
+                        if (it.loading) {
+                            Log.i("MainActivity", "Loading ${it.loading}")
                         }
                         it.resultlist.forEach {
-                            Log.i("MainActivity","Value = ${it}")
+                            Log.i("MainActivity", "Value = ${it}")
                         }
                         it.error.let {
-                            Log.i("mainActivity","Error =${it}")
+                            Log.i("mainActivity", "Error =${it}")
                         }
                     }
                     catstate.let {
-                        if (it.loading){
-                            Log.i("MainActivity","Loading category ${it.loading}")
+                        if (it.loading) {
+                            Log.i("MainActivity", "Loading category ${it.loading}")
 
                         }
                         it.resultlist.forEach {
-                            Log.i("MainActivity","Value = ${it}")
+                            Log.i("MainActivity", "Value = ${it}")
                         }
                         it.error.let {
-                            Log.i("mainActivity","Error =${it}")
+                            Log.i("mainActivity", "Error =${it}")
                         }
                     }
 
