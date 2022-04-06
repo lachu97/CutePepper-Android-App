@@ -27,16 +27,16 @@ fun products.toProduct(): Product {
         quantity = quantity
     )
 }
-fun <T,E> mapperto(data: T):E{
+fun <T,E> mapperTo(data: T):E{
     TODO("dkdlk")
 }
 
-interface mapper<in T, out E> {
-    fun mapto(data: T): E //input T out E
+interface Mapper<in T,out E> {
+    fun mapto(data: T): E //input T, output E
     //fun mapfrom(data: E): T // input E out T
 }
 
-class ProductEntityMapper() : mapper<products, Product> {
+class ProductEntityMapper() : Mapper<products, Product> {
     override fun mapto(data: products): Product {
         return Product(
             id = data.pid,
@@ -50,7 +50,7 @@ class ProductEntityMapper() : mapper<products, Product> {
         )
     }
 }
-class CategoryEntityMapper : mapper<Category,category>{
+class CategoryEntityMapper : Mapper<Category,category>{
     override fun mapto(data: Category): category {
         return category(
             id = data.id,

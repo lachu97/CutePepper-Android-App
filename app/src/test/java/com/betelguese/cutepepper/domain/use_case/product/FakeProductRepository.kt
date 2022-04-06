@@ -2,8 +2,8 @@ package com.betelguese.cutepepper.domain.use_case.product
 
 import com.betelguese.cutepepper.data.models.products
 import com.betelguese.cutepepper.data.remote.remoteProductApi
+import com.betelguese.cutepepper.domain.Mappers.Mapper
 import com.betelguese.cutepepper.domain.Mappers.Product
-import com.betelguese.cutepepper.domain.Mappers.mapper
 
 class FakeProductRepository : remoteProductApi {
     val products:List<products> = listOf(
@@ -17,7 +17,7 @@ class FakeProductRepository : remoteProductApi {
 suspend fun throwerror() {
     throw Exception("Network Not Available")
 }
-class FakeMapper : mapper<products,Product>{
+class FakeMapper : Mapper<products, Product> {
     override fun mapto(data: products): Product {
         return Product(
             id = data.pid,

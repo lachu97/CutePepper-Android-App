@@ -66,6 +66,7 @@ sealed class CustomTheme {
         val Error500: Color = Color(0xFFCC0404),
         val Background500: Color = Color(0xFFD7D7D7),
         val Background700: Color = Color(0xFFE8E8E8),
+        val ScreenBackground700: Color = Color(0xFF4C4C4C),
         val ShimmerBg: Color = Color.LightGray.copy(alpha = 0.9f)
     )
 }

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -15,10 +16,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.compose.rememberNavController
 import com.betelguese.cutepepper.presentation.viewmodels.randomviewmodel
-import com.betelguese.cutepepper.presentation.views.ui_elements.CategoryList
-import com.betelguese.cutepepper.presentation.views.ui_elements.Pro
-import com.betelguese.cutepepper.presentation.views.ui_elements.ProductCard
+import com.betelguese.cutepepper.presentation.views.ui_elements.*
 import com.betelguese.cutepepper.ui.theme.CutePepperTheme
 import com.betelguese.cutepepper.utils.ConnectionLiveData
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,25 +41,29 @@ class MainActivity : ComponentActivity() {
         )
         setContent {
             CutePepperTheme {
+                val navControl = rememberNavController()
                 val random: randomviewmodel = hiltViewModel()
 //                val viewmodel:sharedviewmodel= hiltViewModel()
                 val state = random.newstate.value
                 val catstate = random.categorynewstate.value
                 // A surface container using the 'background' Mycolors from the theme
-                Surface(color = MaterialTheme.colors.background) {
+                Scaffold(backgroundColor = MaterialTheme.colors.background,
+                bottomBar = { bottomBar(navController = navControl)}
+                    ) {
                     Column(
                         modifier = Modifier
                             .fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {
-                        Greeting("Android")
-                        CategoryList(listItems = myitems)
-                        ProductCard(onclick = { /*TODO*/ }, pitems = Pro(
-                            name = "Pnames",
-                            price = 89,
-                            descrip = "LoemIpsum..."
-                        )
-                        )
+//                        Greeting("Android")
+//                        CategoryList(listItems = myitems)
+//                        ProductCard(onclick = { /*TODO*/ }, pitems = Pro(
+//                            name = "Pnames",
+//                            price = 89,
+//                            descrip = "LoemIpsum..."
+//                        )
+//                        )
+                        NavHostgraph(navController = navControl)
                     }
 
 
