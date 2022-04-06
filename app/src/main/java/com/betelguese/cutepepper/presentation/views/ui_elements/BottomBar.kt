@@ -45,7 +45,9 @@ fun bottomBar(
                         popUpTo(navController.graph.findStartDestination().id)
                         launchSingleTop = true
                     }
-                },
+                }, unselectedContentColor = MaterialTheme.customcolor.Teal500.copy(
+                    alpha = 0.4f
+                ),
                 icon = {
                     Icon(painter = painterResource(id = it.icon), contentDescription = null)
                 },
