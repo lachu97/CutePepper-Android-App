@@ -1,5 +1,6 @@
 package com.betelguese.cutepepper.presentation.viewmodels
 
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -22,16 +23,26 @@ class randomviewmodel @Inject constructor(
     private val _uistate = mutableStateOf<Uistate>(Uistate())
     val newstate: State<Uistate> = _uistate
 
+    var _selecetedItem: MutableState<Any?> = mutableStateOf(null)
+    val getSelectedItem get() = _selecetedItem.value
+
     private val _categorystate = mutableStateOf<CategoryUistate>(CategoryUistate())
     val categorynewstate: State<CategoryUistate> = _categorystate
 
     init {
         getProductsFromURL()
-        getCategoryfromURL()
+        getCategoryFromURL()
     }
 
+    fun <T> assignItem(item: T) {
+        _selecetedItem.value = item
+    }
 
-    fun getCategoryfromURL() {
+    fun getItem(): Any? {
+        return getSelectedItem
+    }
+
+    fun getCategoryFromURL() {
         categoryUsecase().onEach { result ->
             when (result) {
                 is Resource.Loading -> {

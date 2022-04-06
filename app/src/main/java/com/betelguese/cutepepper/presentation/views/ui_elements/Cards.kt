@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.betelguese.cutepepper.ui.theme.CutePepperTheme
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
+import kotlinx.coroutines.delay
 
 
 @Composable
