@@ -7,9 +7,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -42,17 +42,18 @@ class MainActivity : ComponentActivity() {
         setContent {
             CutePepperTheme {
                 val navControl = rememberNavController()
-                val random: randomviewmodel = hiltViewModel()
+                val randomviewmodel: randomviewmodel = hiltViewModel()
 //                val viewmodel:sharedviewmodel= hiltViewModel()
-                val state = random.newstate.value
-                val catstate = random.categorynewstate.value
+                val state = randomviewmodel.newstate.value
+                val catstate = randomviewmodel.categorynewstate.value
                 // A surface container using the 'background' Mycolors from the theme
-                Scaffold(backgroundColor = MaterialTheme.colors.background,
+                Scaffold(backgroundColor = MaterialTheme.customcolor.ScreenBackground700,
                 bottomBar = { bottomBar(navController = navControl)}
-                    ) {
+                    ) { innerpadding ->
                     Column(
                         modifier = Modifier
-                            .fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally,
+                            .fillMaxSize()
+                            .padding(innerpadding), horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {
 //                        Greeting("Android")

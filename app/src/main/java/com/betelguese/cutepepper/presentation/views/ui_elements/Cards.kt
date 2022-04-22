@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -144,6 +145,29 @@ fun ProductCard(
     }
 }
 
+@Composable
+fun ProductMainList() {
+    val ctx = LocalContext.current
+    val listofpro = listOf<Pro>(
+        Pro("product 1",67,"somedescription"),
+        Pro("product 2",467,"somedescription"),
+        Pro("product 3",657,"somedescription"),
+        Pro("product 4",667,"somedescription"),
+        Pro("product 5",677,"somedescription"),
+    )
+    LazyColumn {
+        itemsIndexed(listofpro){ _,items ->
+            ProductCard(
+                onclick = { Toast.makeText(
+                    ctx,
+                    "Clicked items name =${items.name}",
+                    Toast.LENGTH_LONG
+                ).show() }, pitems = items
+            )
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun PreviewScreen() {
@@ -153,13 +177,26 @@ fun PreviewScreen() {
                 .fillMaxSize(), verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            ProductCard(
-                onclick = { /*TODO*/ }, pitems = Pro(
-                    name = "Pnames",
-                    price = 89,
-                    descrip = "LoemIpsum..."
-                )
+            val ctx = LocalContext.current
+            val listofpro = listOf<Pro>(
+                Pro("product 1",67,"somedescription"),
+                Pro("product 2",467,"somedescription"),
+                Pro("product 3",657,"somedescription"),
+                Pro("product 4",667,"somedescription"),
+                Pro("product 5",677,"somedescription"),
             )
+            LazyColumn {
+                itemsIndexed(listofpro){ _,items ->
+                    ProductCard(
+                        onclick = { Toast.makeText(
+                            ctx,
+                            "Clicked items name =${items.name}",
+                            Toast.LENGTH_LONG
+                        ).show() }, pitems = items
+                    )
+                }
+            }
+
         }
     }
 }
