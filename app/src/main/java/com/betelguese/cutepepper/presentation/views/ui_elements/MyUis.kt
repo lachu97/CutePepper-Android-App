@@ -30,6 +30,8 @@ sealed class CustomTheme {
         val large: Dp = 54.dp,
         val xl: Dp = 96.dp,
         val xxl: Dp = 120.dp,
+        val pxl: Dp = 150.dp,
+        val rxl: Dp = 180.dp,
         val xxxl: Dp = 200.dp,
         val length: Dp = 56.dp,
         val width: Dp = 48.dp,

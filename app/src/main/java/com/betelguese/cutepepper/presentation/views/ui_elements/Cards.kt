@@ -13,6 +13,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -88,6 +89,7 @@ fun ProductCard(
     Card(
         modifier = Modifier
             .padding(MaterialTheme.custompadding.large)
+            .fillMaxWidth()
             .clickable(onClick = onclick),
         elevation = MaterialTheme.customelevation.normal,
         shape = RoundedCornerShape(MaterialTheme.custom_corneradius.medium),
@@ -97,14 +99,14 @@ fun ProductCard(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(MaterialTheme.custompadding.medium),
-            horizontalArrangement = Arrangement.Center
+            horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             pitems.image.let {
                 CoilImage(
                     imageModel = it,
                     contentScale = ContentScale.Crop,
                     modifier = Modifier
-                        .size(MaterialTheme.customsize.xxl)
+                        .size(MaterialTheme.customsize.pxl)
                         .padding(
                             MaterialTheme.custompadding.default
                         )
@@ -150,12 +152,12 @@ fun ProductMainList() {
     val ctx = LocalContext.current
     val listofpro = listOf<Pro>(
         Pro("product 1",67,"somedescription"),
-        Pro("product 2",467,"somedescription"),
+        Pro("product 2 with long titel",467,"somedescription"),
         Pro("product 3",657,"somedescription"),
         Pro("product 4",667,"somedescription"),
         Pro("product 5",677,"somedescription"),
     )
-    LazyColumn {
+    LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
         itemsIndexed(listofpro){ _,items ->
             ProductCard(
                 onclick = { Toast.makeText(

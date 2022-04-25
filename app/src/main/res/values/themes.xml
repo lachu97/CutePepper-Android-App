@@ -18,6 +18,12 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="Theme.CustomSplash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/black</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_home</item>
+        <item name="windowSplashScreenAnimationDuration">500</item>
+        <item name="postSplashScreenTheme">@style/Theme.CutePepper</item>
+    </style>
 
     <style name="Theme.CutePepper.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

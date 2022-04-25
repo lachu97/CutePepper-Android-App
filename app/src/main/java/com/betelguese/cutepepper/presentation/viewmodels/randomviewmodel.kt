@@ -23,6 +23,8 @@ class randomviewmodel @Inject constructor(
     private val _uistate = mutableStateOf<Uistate>(Uistate())
     val newstate: State<Uistate> = _uistate
 
+
+
     var _selecetedItem: MutableState<Any?> = mutableStateOf(null)
     val getSelectedItem get() = _selecetedItem.value
 
