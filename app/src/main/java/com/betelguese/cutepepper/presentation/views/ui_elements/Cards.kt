@@ -10,16 +10,18 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
+
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
+
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.betelguese.cutepepper.R
 import com.betelguese.cutepepper.ui.theme.CutePepperTheme
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.coil.CoilImage
@@ -135,13 +137,21 @@ fun ProductCard(
                     }
                 }
                 Spacer(modifier = Modifier.padding(MaterialTheme.custompadding.small))
-                DefaultButton(
-                    title = "Add to Cart",
-                    onclick = { /*TODO*/ },
-                    modifier = Modifier.padding(5.dp),
-                    elevation = 1.dp,
-                    cornerradius = 4.dp
-                )
+                Row(horizontalArrangement = Arrangement.SpaceBetween) {
+
+                    DefaultIconButton(
+                        title = "Cart",
+                        onclick = { /*TODO*/ },
+                        modifier = Modifier.padding(1.dp).wrapContentWidth(Alignment.CenterHorizontally).wrapContentHeight(),
+                        icon = R.drawable.ic_cart
+                    )
+                    DefaultIconButton(
+                        title = "View",
+                        onclick = { /*TODO*/ },
+                        modifier = Modifier.padding(1.dp).wrapContentWidth(Alignment.CenterHorizontally).wrapContentHeight(),
+                        icon = R.drawable.ic_eye
+                    )
+                }
             }
         }
     }
@@ -152,8 +162,8 @@ fun ProductMainList() {
     val ctx = LocalContext.current
     val listofpro = listOf<Pro>(
         Pro("product 1",67,"somedescription"),
-        Pro("product 2 with long titel",467,"somedescription"),
-        Pro("product 3",657,"somedescription"),
+        Pro("product 2 with ",467,"somedescription"),
+        Pro("product 3 long title for",657,"somedescription"),
         Pro("product 4",667,"somedescription"),
         Pro("product 5",677,"somedescription"),
     )

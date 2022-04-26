@@ -40,7 +40,7 @@ fun DefaultButton(
         elevation = ButtonDefaults.elevation(defaultElevation = elevation),
         shape = RoundedCornerShape(cornerradius)
     ) {
-       NewText(title = title)
+       NewText(title = title, fontSize = 12.sp)
     }
 
 }
@@ -51,6 +51,7 @@ fun DefaultIconButton(
     title: String,
     onclick: () -> Unit,
     icon: Int,
+    iconsize: Dp = 24.dp,
     modifier: Modifier = Modifier.padding(MaterialTheme.custompadding.xtralarge),
     bgcolor: Color = MaterialTheme.customcolor.Background700,
 ) {
@@ -64,9 +65,10 @@ fun DefaultIconButton(
             painter = painterResource(id = icon),
             contentDescription = null,
 
+            modifier = Modifier
+                    .size(iconsize)
             )
-        Spacer(modifier = Modifier.padding(MaterialTheme.custompadding.medium))
-        NewText(title = title)
+        NewText(title = title, fontSize = 14.sp)
     }
 }
 
@@ -89,7 +91,7 @@ fun NewText(
         fontStyle = FontStyle.Normal,
         fontFamily = fontFamily,
         overflow = TextOverflow.Ellipsis,
-        maxLines = 2
+        maxLines = 1
 
     )
 }

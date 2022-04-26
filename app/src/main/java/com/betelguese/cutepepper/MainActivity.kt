@@ -31,9 +31,7 @@ class MainActivity : ComponentActivity() {
     val mycinemodel by viewModels<randomviewmodel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen().apply {
-
-        }
+        installSplashScreen()
         val hasinternet = ConnectionLiveData(this)
         hasinternet.observe(this) {
             Log.i("MainActivity", "Internet Connection =${it}")
