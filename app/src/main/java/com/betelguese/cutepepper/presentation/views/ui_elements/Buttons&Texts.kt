@@ -73,6 +73,29 @@ fun DefaultIconButton(
 }
 
 @Composable
+fun Paragraph(
+    title: String,
+    modifier: Modifier = Modifier.padding(MaterialTheme.custompadding.medium),
+    textcolor: Color = MaterialTheme.customcolor.Text700,
+    fontWeight: FontWeight = FontWeight.Bold,
+    fontSize: TextUnit = 20.sp,
+    fontFamily: FontFamily = FontFamily.SansSerif,
+    maxlines : Int = 5
+) {
+    Text(
+        text = title,
+        modifier = modifier,
+        color = textcolor,
+        fontWeight = fontWeight,
+        fontSize = fontSize,
+        fontStyle = FontStyle.Italic,
+        fontFamily = fontFamily,
+        overflow = TextOverflow.Ellipsis,
+        maxLines = maxlines
+
+    )
+}
+@Composable
 fun NewText(
     title: String,
     modifier: Modifier = Modifier.padding(MaterialTheme.custompadding.medium),
