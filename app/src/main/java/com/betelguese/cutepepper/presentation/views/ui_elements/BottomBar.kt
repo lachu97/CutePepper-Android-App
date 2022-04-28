@@ -89,7 +89,27 @@ fun Home() {
 
 @Composable
 fun Profile() {
-    Text(text = "ProfileScreen")
+    Scaffold(
+    modifier = Modifier
+            .fillMaxSize(),
+    backgroundColor = MaterialTheme.customcolor.ScreenBackground700
+        ) { pad ->
+        Column(
+        modifier = Modifier
+                .fillMaxSize()
+            .padding(pad)) {
+            repeat(4){
+
+                CartCard(onclick = {},
+                    pitems = Pro(
+                        "SOme Name",
+                        78,
+                        "Random Desc"
+                    ))
+            }
+        }
+
+    }
 
 }
 

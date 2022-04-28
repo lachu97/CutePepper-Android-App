@@ -1,5 +1,6 @@
 package com.betelguese.cutepepper.presentation.views.ui_elements
 
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -12,6 +13,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.betelguese.cutepepper.R
@@ -59,7 +61,13 @@ fun CartCard(
             }
             Spacer(modifier = Modifier.padding(MaterialTheme.custompadding.large))
 
-            Column(horizontalAlignment = Alignment.Start) {
+            Column(
+                horizontalAlignment = Alignment.Start,
+
+                modifier = Modifier
+                    .width(IntrinsicSize.Min)
+
+            ) {
                 pitems.name.let {
                     NewText(title = it)
                 }
@@ -74,7 +82,7 @@ fun CartCard(
                 Spacer(modifier = Modifier.padding(MaterialTheme.custompadding.small))
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     var count by remember {
-                        mutableStateOf(0)
+                        mutableStateOf(1)
                     }
                     Icon(
                         painter = painterResource(id = R.drawable.minus), contentDescription = null,
@@ -82,15 +90,18 @@ fun CartCard(
                         modifier = Modifier
                             .size(24.dp)
                             .clickable {
-                                if (count > 0) {
+                                if (count > 1) {
                                     count--
                                 }
                             }
                     )
                     Spacer(modifier = Modifier.padding(2.dp))
-                    Text(text = count.toString(),
-                    modifier = Modifier
-                            .size(24.dp))
+                    Text(
+                        text = count.toString(),
+                        modifier = Modifier
+                            .size(24.dp),
+                        textAlign = TextAlign.Center
+                    )
                     Spacer(modifier = Modifier.padding(2.dp))
                     Icon(
                         painter = painterResource(id = R.drawable.ic_add),
@@ -102,8 +113,35 @@ fun CartCard(
                             }
 
                     )
+                    Spacer(modifier = Modifier.padding(MaterialTheme.custompadding.large))
+
+                    Box(
+                        contentAlignment = Alignment.CenterEnd,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_delete),
+                            contentDescription = null,
+                            tint = Color.Red.copy(alpha = 0.6f),
+
+                            modifier = Modifier
+                                .size(32.dp).clickable {
+                                    Log.i("SOmeActivity","Item Deleted")
+                                }
+                                .align(Alignment.CenterEnd)
+
+                        )
+                    }
                 }
+                Spacer(modifier = Modifier.padding(MaterialTheme.custompadding.large))
+
+
+
             }
+
+
         }
     }
 }
