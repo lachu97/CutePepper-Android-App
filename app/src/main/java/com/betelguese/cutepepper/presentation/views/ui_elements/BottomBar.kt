@@ -22,6 +22,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.betelguese.cutepepper.presentation.views.ui_screens.CartScreenUI
 import com.betelguese.cutepepper.presentation.views.ui_screens.homeScreen
 import com.betelguese.cutepepper.presentation.views.ui_views.BottomNavigationScreens
 
@@ -115,7 +116,7 @@ fun Profile() {
 
 @Composable
 fun Cart() {
-    Text(text = "CartScreen")
+    CartScreenUI()
 
 }
 

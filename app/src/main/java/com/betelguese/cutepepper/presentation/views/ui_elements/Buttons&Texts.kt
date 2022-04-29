@@ -40,7 +40,7 @@ fun DefaultButton(
         elevation = ButtonDefaults.elevation(defaultElevation = elevation),
         shape = RoundedCornerShape(cornerradius)
     ) {
-       NewText(title = title, fontSize = 12.sp)
+       NewText(title = title, fontSize = 19.sp)
     }
 
 }

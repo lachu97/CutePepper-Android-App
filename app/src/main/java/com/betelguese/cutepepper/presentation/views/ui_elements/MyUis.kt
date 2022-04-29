@@ -62,7 +62,7 @@ sealed class CustomTheme {
         val Teal700: Color = Color(0xFF00FCE4),
         val Border200: Color = Color(0xFF262726),
         val Border500: Color = Color(0xFF070707),
-        val Border700: Color = Color(0xFF000000),
+        val Border700: Color = Color(0xFF8BC34A),
         val Text500: Color = Color(0xFF161616),
         val Text700: Color = Color(0xFF000000),
         val Error500: Color = Color(0xFFCC0404),

@@ -47,24 +47,7 @@ fun DetailSearchScreen(
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_back),
-                    contentDescription = null,
-
-                    modifier = Modifier
-                        .padding(MaterialTheme.custompadding.small)
-                        .size(48.dp),
-                    tint = MaterialTheme.customcolor.Background700
-                )
-
-
-            }
+            BackTopBar()
             Divider(thickness = 1.dp, color = Color.White.copy(0.4f))
             Image(
                 painter = painterResource(id = R.drawable.seo),
@@ -96,6 +79,28 @@ fun DetailSearchScreen(
 
 
         }
+    }
+}
+
+@Composable
+fun BackTopBar() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            painter = painterResource(id = R.drawable.ic_back),
+            contentDescription = null,
+
+            modifier = Modifier
+                .padding(MaterialTheme.custompadding.small)
+                .size(48.dp),
+            tint = MaterialTheme.customcolor.Background700
+        )
+
+
     }
 }
 

@@ -114,7 +114,6 @@ fun CartCard(
 
                     )
                     Spacer(modifier = Modifier.padding(MaterialTheme.custompadding.large))
-
                     Box(
                         contentAlignment = Alignment.CenterEnd,
                         modifier = Modifier
@@ -125,23 +124,18 @@ fun CartCard(
                             painter = painterResource(id = R.drawable.ic_delete),
                             contentDescription = null,
                             tint = Color.Red.copy(alpha = 0.6f),
-
                             modifier = Modifier
-                                .size(32.dp).clickable {
-                                    Log.i("SOmeActivity","Item Deleted")
+                                .size(32.dp)
+                                .clickable {
+                                    Log.i("SOmeActivity", "Item Deleted")
                                 }
                                 .align(Alignment.CenterEnd)
-
+                                .clip(RoundedCornerShape(3f))
                         )
                     }
                 }
                 Spacer(modifier = Modifier.padding(MaterialTheme.custompadding.large))
-
-
-
             }
-
-
         }
     }
 }
@@ -149,7 +143,7 @@ fun CartCard(
 @Preview(showBackground = true)
 @Composable
 fun Previewmycomponent() {
-    Surface() {
+    Surface {
         Column(
             modifier = Modifier
                 .fillMaxSize()
