@@ -30,10 +30,10 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun CategoryList(
-    listItems: List<String>
+    listItems: List<String>,
+    onclick: () -> Unit = {}
 
 ) {
-    val ctx = LocalContext.current
     LazyRow(
         modifier = Modifier
             .padding(MaterialTheme.custompadding.medium)
@@ -41,12 +41,7 @@ fun CategoryList(
     ) {
         itemsIndexed(listItems) { idx, item ->
             CategoryCard(
-                onclick = {
-                    Toast.makeText(
-                        ctx, "CLicked item name -${idx} and ${item}",
-                        Toast.LENGTH_LONG
-                    ).show()
-                },
+                onclick = onclick,
                 itemName = item
             )
         }
