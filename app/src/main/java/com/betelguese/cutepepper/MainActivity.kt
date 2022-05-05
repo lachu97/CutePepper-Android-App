@@ -13,6 +13,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -48,6 +50,9 @@ class MainActivity : ComponentActivity() {
                 val navControl = rememberNavController()
                 val randomviewmodel: randomviewmodel = hiltViewModel()
 //                val viewmodel:sharedviewmodel= hiltViewModel()
+                val bottomstate = rememberSaveable {
+                    mutableStateOf(true)
+                }
                 val state = randomviewmodel.newstate.value
                 val widowInfo = getWindowInfo()
                 val catstate = randomviewmodel.categorynewstate.value
